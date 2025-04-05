@@ -19,8 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
         activityCard.className = "activity-card";
 
         const spotsLeft = details.max_participants - details.participants.length;
-        const participantsList = details.participants.map(email => `<li>${email}</li>`).join('');
-
+        const participantsList = document.createElement("ul");
+        participantsList.className = "participants-list";
+        details.participants.forEach(email => {
+          const listItem = document.createElement("li");
+          listItem.textContent = email;
+          participantsList.appendChild(listItem);
+        });
         activityCard.innerHTML = `
           <h4>${name}</h4>
           <p>${details.description}</p>
